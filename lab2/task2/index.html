@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <style>
+        body {
+            background-color: beige;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            margin-top: 10%;
+
+        }
+
+        input {
+            border-radius: 25px;
+            border-color: orange;
+            padding: 10px;
+            width: 360px;
+            background-color: rgb(241, 241, 155);
+        }
+
+        button {
+            border-radius: 20px;
+            padding: 10px;
+            width: 80px;
+            border: none;
+            background-color: rgb(241, 241, 155);
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: orange;
+        }
+
+        .task-div {
+            flex: 1;
+        }
+
+        .todo {
+            padding: 6px;
+            min-width: 650px;
+            margin-top: 20px;
+            gap: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        p {
+            padding-left: 10px;
+        }
+
+
+        /* 
+        #btns-div {
+            display: flex;
+        } */
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <body>
+        <div class="container">
+            <input type="text" placeholder="Add your Task Here">
+            <button id="add-btn">Add</button>
+            <section id="tasks">
+            </section>
+        </div>
+        <script>
+
+
+            $("#add-btn").click(function () {
+                let task = $("input").val()
+                if (task === '') {
+                    alert("please enter task first")
+                } else {
+                    $(`
+                    <div class="todo">
+                    <div class="task-div"
+                    style=" border: 2px solid orange; border-radius: 25px;">
+                    <p>${task}</p>
+                    
+                    </div>
+                    
+                    
+                        <div>
+                        <button class="done">Done</button>
+                        <button class="del">Delete</button>
+                        </div>
+
+                        </div>
+
+                    `
+                    ).appendTo("section")
+                    $("input").val('')
+                }
+            });
+
+            $("section").on("click", (e) => {
+                if (e.target.classList.contains("done")) {
+                    console.log("clicked")
+                    $(e.target).closest(".todo").css({ 'background-color': 'green', 'border-radius': '25px' })
+                }
+                if (e.target.classList.contains("del")) {
+                    $(e.target).closest(".todo").remove()
+                }
+            });
+
+
+
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <style>
+        section {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        h2 {
+            margin: 10px 60px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    </head>
+
+    <body>
+
+        <section>
+            <div id="droppable" class="ui-widget-header">
+                <img src="./3.JPG" alt="" width="125%">
+            </div>
+
+            <div id="draggable" class="ui-widget-content"
+                style="background-color: yellow; height: 250px; width: 250px;">
+                <img id="shake" src="./2.jpg" alt="" height="180px" style="margin:10px 50px 0;">
+                <h2>Drag Me</h2>
+            </div>
+
+        </section>
+
+
+        <script>
+            $("#draggable").hover(function () {
+                $("#shake").effect("shake", { times: 3 }, 500)
+            });
+            $("#draggable").draggable();
+            $("#droppable").droppable({
+                drop: function (event, ui) {
+                    $("#draggable")
+                        .fadeOut(300)
+                }
+            });
+        </script>
+    </body>
+
+</html>
